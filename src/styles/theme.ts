@@ -1,10 +1,19 @@
-export const theme = {
-  color: {
-    primary: 'black',
-    secondary: 'pink',
+import { createTheme } from '@material-ui/core/styles'
+import { red } from '@material-ui/core/colors'
+
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: '#fff',
+    },
   },
-  size: {
-    primary: '1.6rem',
-    secondary: '3.2rem',
-  },
-} as const
+})

@@ -63,11 +63,11 @@ module.exports = function (plop) {
           path: `${componentPath}/${componentName}.tsx`,
           templateFile: `${componentTemplatePath}/component.tsx.hbs`,
         },
-        {
-          type: 'add',
-          path: `${componentPath}/${componentName}.styled.ts`,
-          templateFile: `${componentTemplatePath}/styled.ts.hbs`,
-        },
+        // {
+        //   type: 'add',
+        //   path: `${componentPath}/${componentName}.styled.ts`,
+        //   templateFile: `${componentTemplatePath}/styled.ts.hbs`,
+        // },
         {
           type: 'add',
           path: `${componentPath}/${componentName}.test.tsx`,

@@ -1,13 +1,12 @@
-import * as Styled from './{{pascalCase ComponentName}}.styled'
-
 export type {{pascalCase ComponentName}}Props = {
   children: React.ReactNode
 }
 
 export const {{pascalCase ComponentName}} = ({ children }: {{pascalCase ComponentName}}Props) => {
   return (
-    <Styled.Container>
+    <div>
       {children}
-    </Styled.Container>
+      <br />
+    </div>
   )
 }

@@ -1,6 +1,6 @@
-import { ThemeProvider } from "styled-components";
-import { theme } from '../src/styles/theme'
-import { GlobalStyle } from '../src/styles/global'
+import { muiTheme } from 'storybook-addon-material-ui'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { theme } from '@/styles/theme'
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -31,9 +31,10 @@ export const parameters = {
 
 export const decorators = [
   Story => (
-    <ThemeProvider theme={theme}>
+    <>
+      <CssBaseline />
       <Story />
-      <GlobalStyle />
-    </ThemeProvider>
+    </>
   ),
-];
+	muiTheme([theme]),
+]
