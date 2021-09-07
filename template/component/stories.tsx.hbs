@@ -1,0 +1,15 @@
+import { Story, Meta } from '@storybook/react'
+import { {{pascalCase ComponentName}}, {{pascalCase ComponentName}}Props } from './{{pascalCase ComponentName}}'
+
+export default {
+  title: '{{pascalCase Granularity}}/{{pascalCase ComponentName}}',
+  component: {{pascalCase ComponentName}},
+} as Meta
+
+const Template: Story<{{pascalCase ComponentName}}Props> = args => <{{pascalCase ComponentName}} {...args} />
+
+export const Primary = Template.bind({})
+Primary.storyName = 'Primary'
+
+// Primary.args = {
+// }
