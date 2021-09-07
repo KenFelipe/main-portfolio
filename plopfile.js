@@ -3,11 +3,11 @@ module.exports = function (plop) {
     function to judge if skip certain action
     if return any value action will be skiped
   */
-  // const judgeSkipAction = (judgingData, message) => () => {
-  //   if (!judgingData) {
-  //     return message
-  //   }
-  // }
+  const judgeSkipAction = (judgingData, message) => () => {
+    if (!judgingData) {
+      return message
+    }
+  }
 
   plop.setGenerator('component', {
     description: 'Create React Component',
@@ -30,12 +30,12 @@ module.exports = function (plop) {
       //   message: 'StoryBook? (defualt: yes):',
       //   default: true,
       // },
-      // {
-      //   type: 'confirm',
-      //   name: 'Tests',
-      //   message: 'Tests? (default: yes):',
-      //   default: true,
-      // },
+      {
+        type: 'confirm',
+        name: 'Tests',
+        message: 'Tests? (default: yes):',
+        default: true,
+      },
       // {
       //   type: 'confirm',
       //   name: 'TypeScript',
@@ -48,7 +48,8 @@ module.exports = function (plop) {
     actions: function (data) {
       const componentName = '{{pascalCase ComponentName}}'
 
-      const componentBasePath = './src/components/{{lowerCase Granularity}}'
+      const componentBasePath =
+        './src/components/{{lowerCase Granularity}}'
       const componentPath = `${componentBasePath}/${componentName}`
 
       const componentTemplatePath = 'template/component'
@@ -71,7 +72,10 @@ module.exports = function (plop) {
           type: 'add',
           path: `${componentPath}/${componentName}.test.tsx`,
           templateFile: `${componentTemplatePath}/test.tsx.hbs`,
-          // skip: judgeSkipAction(data.Tests, 'tests.tsx was not created'),
+          skip: judgeSkipAction(
+            data.Tests,
+            'tests.tsx was skiped',
+          ),
         },
         {
           type: 'add',
