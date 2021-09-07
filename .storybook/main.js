@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
@@ -18,6 +20,6 @@ module.exports = {
       "@/styles": path.resolve(__dirname, "../src/styles"),
       "@/utils": path.resolve(__dirname, "../src/utils"),
     }
-    return config;
+    return config
   }
 }

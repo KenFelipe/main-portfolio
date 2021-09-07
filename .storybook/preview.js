@@ -20,8 +20,8 @@ export const parameters = {
     storySort: {
       order: [
         'Atoms',
-        'Organisms',
         'Molecules',
+        'Organisms',
         'Templates',
         'Pages',
       ],
