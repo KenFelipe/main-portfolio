@@ -20,6 +20,12 @@ export type WorkPanelProps = {
   details: string
 }
 
+const iconButtonLabel = {
+  github: 'Source Code',
+  webpage: 'View Webpage',
+  details: 'View Details',
+}
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -135,21 +141,21 @@ export const WorkPanel = ({
               icon={<GitHubIcon />}
               href={github}
             >
-              Source Code
+              {iconButtonLabel.github}
             </IconButton>
             <IconButton
               color="primary"
               icon={<ArrowForwardIosIcon />}
               href={webpage}
             >
-              View Webpage
+              {iconButtonLabel.webpage}
             </IconButton>
             <IconButton
               color="primary"
               icon={<ArrowForwardIosIcon />}
               href={details}
             >
-              View Details
+              {iconButtonLabel.details}
             </IconButton>
           </div>
         </div>
