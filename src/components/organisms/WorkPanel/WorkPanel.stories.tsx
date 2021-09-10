@@ -19,8 +19,10 @@ const Template: Story<WorkPanelProps> = (args) => (
 
 export const Primary = Template.bind({})
 Primary.storyName = 'Primary'
-
 Primary.args = {
   image: 'https://source.unsplash.com/random/360/?programming',
   description: 'thumbnail of programming',
+  github: 'https://github.com',
+  webpage: 'https://google.com/#webpage',
+  details: 'https://google.com/#details',
 }

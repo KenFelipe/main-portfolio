@@ -8,10 +8,16 @@ import {
 } from '@material-ui/core/styles'
 import Fade from '@material-ui/core/Fade'
 import Typography from '@material-ui/core/Typography'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
+import { IconButton } from '@/atoms/IconButton/IconButton'
 
 export type WorkPanelProps = {
   image: string
   description: string
+  github: string
+  webpage: string
+  details: string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -43,12 +49,20 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       height: '100%',
     },
-    fade: {
+    flex: {
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
+    },
+    fade: {
       alignItems: 'center',
-      background: theme.palette.primary.main,
+      background: theme.palette.primary.dark,
+    },
+    buttons: {
+      alignItems: 'stretch',
+      '& > *': {
+        margin: theme.spacing(0.5, 0),
+      },
     },
     transition: {
       transition: 'all 0.7s ease',
@@ -59,6 +73,9 @@ const useStyles = makeStyles((theme: Theme) =>
 export const WorkPanel = ({
   image,
   description,
+  github,
+  webpage,
+  details,
 }: WorkPanelProps) => {
   const classes = useStyles()
   const theme = useTheme<Theme>()
@@ -98,8 +115,38 @@ export const WorkPanel = ({
         in={over}
         timeout={theme.transitions.duration.complex}
       >
-        <div className={clsx(classes.content, classes.fade)}>
+        <div
+          className={clsx(
+            classes.content,
+            classes.flex,
+            classes.fade,
+          )}
+        >
           <Typography>Fade Screen</Typography>
+
+          <div className={clsx(classes.flex, classes.buttons)}>
+            <IconButton
+              color="primary"
+              icon={<GitHubIcon />}
+              href={github}
+            >
+              Source Code
+            </IconButton>
+            <IconButton
+              color="primary"
+              icon={<ArrowForwardIosIcon />}
+              href={webpage}
+            >
+              View Webpage
+            </IconButton>
+            <IconButton
+              color="primary"
+              icon={<ArrowForwardIosIcon />}
+              href={details}
+            >
+              View Details
+            </IconButton>
+          </div>
         </div>
       </Fade>
     </article>
