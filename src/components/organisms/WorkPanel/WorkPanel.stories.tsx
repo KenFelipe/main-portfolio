@@ -5,7 +5,7 @@ export default {
   title: 'Organisms/WorkPanel',
   component: WorkPanel,
   decorators: [
-    Story => (
+    (Story) => (
       <div style={{ maxWidth: '320px' }}>
         <Story />
       </div>
@@ -13,7 +13,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story<WorkPanelProps> = args => (
+const Template: Story<WorkPanelProps> = (args) => (
   <WorkPanel {...args} />
 )
 

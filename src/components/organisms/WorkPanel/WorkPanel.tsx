@@ -94,13 +94,11 @@ export const WorkPanel = ({
         />
       </figure>
 
-      <Fade in={over} timeout={theme.transitions.duration.complex}>
-        <div
-          className={clsx(
-            classes.content,
-            classes.fade,
-          )}
-        >
+      <Fade
+        in={over}
+        timeout={theme.transitions.duration.complex}
+      >
+        <div className={clsx(classes.content, classes.fade)}>
           <Typography>Fade Screen</Typography>
         </div>
       </Fade>
