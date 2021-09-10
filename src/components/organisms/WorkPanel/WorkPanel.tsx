@@ -123,7 +123,7 @@ export const WorkPanel = ({
         <a className={clsx(classes.content)} href={details} />
       </MobileView>
 
-      {/** Only for laptop ana desktop pc */}
+      {/** Only for laptop and desktop pc */}
       <Fade
         in={!isMobile && over}
         timeout={theme.transitions.duration.complex}
