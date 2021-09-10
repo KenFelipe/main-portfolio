@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { isMobile, MobileView } from 'react-device-detect'
 import clsx from 'clsx'
 import {
   makeStyles,
@@ -83,6 +84,7 @@ export const WorkPanel = ({
   const [over, setOver] = useState(false)
 
   const handleEnter = () => {
+    if (isMobile) return
     setOver(true)
   }
 
@@ -111,8 +113,14 @@ export const WorkPanel = ({
         />
       </figure>
 
+      {/** Only for Mobile */}
+      <MobileView>
+        <a className={clsx(classes.content)} href={details} />
+      </MobileView>
+
+      {/** Only for laptop ana desktop pc */}
       <Fade
-        in={over}
+        in={!isMobile && over}
         timeout={theme.transitions.duration.complex}
       >
         <div
