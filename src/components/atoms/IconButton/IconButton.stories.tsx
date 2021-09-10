@@ -23,7 +23,7 @@ export const PrimaryColor = Template.bind({})
 PrimaryColor.storyName = 'Primary'
 PrimaryColor.args = {
   color: 'primary',
-  label: 'View Website',
+  children: 'View Website',
   icon: <ArrowForwardIosIcon />,
   href: 'https://www.google.com',
 }
@@ -32,7 +32,7 @@ export const SecondaryColor = Template.bind({})
 SecondaryColor.storyName = 'Secondary'
 SecondaryColor.args = {
   color: 'secondary',
-  label: 'View Website',
+  children: 'View Website',
   icon: <ArrowForwardIosIcon />,
   href: 'https://www.google.com',
 }
@@ -41,7 +41,7 @@ export const GithubIcon = Template.bind({})
 GithubIcon.storyName = 'With Github Icon'
 GithubIcon.args = {
   color: 'primary',
-  label: 'Source Code',
+  children: 'Source Code',
   icon: <GitHubIcon />,
   href: 'https://www.google.com',
 }

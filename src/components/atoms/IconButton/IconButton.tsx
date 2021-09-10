@@ -7,7 +7,7 @@ import {
 
 export type IconButtonProps = {
   color: 'primary' | 'secondary'
-  label: string
+  children: string
   icon?: React.ReactNode
   href?: string
   full?: boolean
@@ -32,7 +32,7 @@ const useStyles = makeStyles<
 
 export const IconButton = ({
   color = 'primary',
-  label,
+  children,
   icon = '',
   href = '',
   full = false,
@@ -48,7 +48,7 @@ export const IconButton = ({
       endIcon={icon}
       fullWidth={full}
     >
-      {label}
+      {children}
     </Button>
   )
 }
