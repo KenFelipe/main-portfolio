@@ -8,7 +8,6 @@ import {
   Theme,
 } from '@material-ui/core/styles'
 import Fade from '@material-ui/core/Fade'
-import Typography from '@material-ui/core/Typography'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 import { IconButton } from '@/atoms/IconButton/IconButton'
@@ -130,8 +129,6 @@ export const WorkPanel = ({
             classes.fade,
           )}
         >
-          <Typography>Fade Screen</Typography>
-
           <div className={clsx(classes.flex, classes.buttons)}>
             <IconButton
               color="primary"
