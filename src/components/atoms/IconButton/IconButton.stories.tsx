@@ -7,7 +7,7 @@ export default {
   title: 'Atoms/IconButton',
   component: IconButton,
   decorators: [
-    Story => (
+    (Story) => (
       <div style={{ background: 'purple', padding: '12px' }}>
         <Story />
       </div>
@@ -15,7 +15,7 @@ export default {
   ],
 } as Meta
 
-const Template: Story<IconButtonProps> = args => (
+const Template: Story<IconButtonProps> = (args) => (
   <IconButton {...args} />
 )
 
