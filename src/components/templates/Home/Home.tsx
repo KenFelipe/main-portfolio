@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { useSpring, config, animated } from '@react-spring/web'
 import clsx from 'clsx'
 import {
   useTheme,
@@ -51,8 +53,6 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'relative',
     },
     svg: {
-      // width: '100%',
-      // height: '100%',
       width: '150%',
       height: '150%',
       position: 'absolute',
@@ -94,6 +94,21 @@ export const Home = () => {
     </Button>
   )
 
+  const [index, setIndex] = useState(0)
+  const paths = [
+    'M105.74,79.59c131.91-116.91,374.05-91.53,415-6c40.28,84.12-131.75,189.49-93,321 c35.66,121.03,210.49,130.64,206,187c-5.8,72.81-308.74,198.14-495,57C-28.55,511.83-44.96,213.15,105.74,79.59z',
+    'M105.68,79.58c114.47-95,319.89-86.34,376-2c49.62,74.59-49.09,160.89-5,309 c36.65,123.11,129.58,146.57,116,202c-21.61,88.24-291.23,168.26-454,50C-29.72,516.24-48.34,207.4,105.68,79.58z',
+  ]
+  const { path } = useSpring({
+    from: { path: paths[index] },
+    path: paths[index + 1] || paths[0],
+    config: {
+      ...config.molasses,
+      duration: 3000,
+    },
+    onRest: () => setIndex((i) => (i + 1) % paths.length),
+  })
+
   return (
     <main className={classes.root}>
       <section className={clsx(classes.home)}>
@@ -114,10 +129,7 @@ export const Home = () => {
           viewBox="0 0 634.33 703.22"
           preserveAspectRatio="none"
         >
-          <path
-            d="M105.74,79.59c131.91-116.91,374.05-91.53,415-6c40.28,84.12-131.75,189.49-93,321
-            c35.66,121.03,210.49,130.64,206,187c-5.8,72.81-308.74,198.14-495,57C-28.55,511.83-44.96,213.15,105.74,79.59z"
-          />
+          <animated.path d={path} />
         </svg>
         {debugButton(100, 50, 'Home', true)}
       </section>
