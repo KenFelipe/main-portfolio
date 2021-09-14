@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import {
+  useTheme,
   makeStyles,
   createStyles,
   Theme,
@@ -16,7 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
       height: '200vh',
       display: 'grid',
       gridTemplateRows: 'repeat(4, 1fr)',
-      gridTemplateColumns: '1fr calc(100vw - 40px * 2) 1fr',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      // gridTemplateColumns: '1fr calc(100vw - 40px * 2) 1fr',
       gridTemplateAreas: `
         ". . works"
         "profile home works"
@@ -39,23 +41,45 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     works: {
       gridArea: 'works',
+      position: 'relative',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     contact: {
       gridArea: 'contact',
+      position: 'relative',
     },
-    right: {
-      textAlign: 'right',
+    svg: {
+      // width: '100%',
+      // height: '100%',
+      width: '150%',
+      height: '150%',
+      position: 'absolute',
+    },
+    debugRight: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      zIndex: 100,
     },
   }),
 )
 
 export const Home = () => {
   const classes = useStyles()
+  const theme = useTheme()
 
-  const debugButton = (x: number, y: number, label: string) => (
+  const debugButton = (
+    x: number,
+    y: number,
+    label: string,
+    right = false,
+  ) => (
     <Button
-      variant="outlined"
-      color="primary"
+      className={clsx({ [classes.debugRight]: right })}
+      variant="contained"
+      color="secondary"
       /** move to given grid area */
       onClick={() =>
         document
@@ -83,12 +107,23 @@ export const Home = () => {
         {debugButton(100, 50, 'Home')}
       </section>
 
-      <section className={clsx(classes.works, classes.right)}>
-        {debugButton(100, 50, 'Home')}
+      <section className={clsx(classes.works)}>
+        <svg
+          className={clsx(classes.svg)}
+          fill={theme.palette.primary.light}
+          viewBox="0 0 634.33 703.22"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M105.74,79.59c131.91-116.91,374.05-91.53,415-6c40.28,84.12-131.75,189.49-93,321
+            c35.66,121.03,210.49,130.64,206,187c-5.8,72.81-308.74,198.14-495,57C-28.55,511.83-44.96,213.15,105.74,79.59z"
+          />
+        </svg>
+        {debugButton(100, 50, 'Home', true)}
       </section>
 
-      <section className={clsx(classes.contact, classes.right)}>
-        {debugButton(100, 50, 'Home')}
+      <section className={clsx(classes.contact)}>
+        {debugButton(100, 50, 'Home', true)}
       </section>
     </main>
   )
