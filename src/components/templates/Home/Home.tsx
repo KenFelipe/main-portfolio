@@ -86,24 +86,18 @@ const useStyles = makeStyles((theme: Theme) =>
       position: 'absolute',
     },
     profileSlime: {
-      '&&': {
-        width: '157%',
-        height: '135%',
-      },
+      width: '150%',
+      height: '175%',
     },
     worksSlime: {
-      '&&': {
-        width: '157%',
-        height: '135%',
-        zIndex: 10,
-      },
+      width: '165%',
+      height: '135%',
+      zIndex: 10,
     },
     contactSlime: {
-      '&&': {
-        width: '160%',
-        height: '150%',
-        transform: 'scaleX(-1)',
-      },
+      width: '160%',
+      height: '160%',
+      transform: 'scaleX(-1)',
     },
     link: {
       position: 'absolute',
