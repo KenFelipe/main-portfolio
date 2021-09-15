@@ -74,27 +74,21 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     home: {
       gridArea: 'home',
-      position: 'relative',
     },
     profile: {
       gridArea: 'profile',
     },
     works: {
       gridArea: 'works',
+    },
+    contact: {
+      gridArea: 'contact',
+    },
+    gridSection: {
       position: 'relative',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-    },
-    contact: {
-      gridArea: 'contact',
-      position: 'relative',
-    },
-    debugRight: {
-      position: 'absolute',
-      top: 0,
-      right: 0,
-      zIndex: 100,
     },
     slime: {
       '&&': {
@@ -141,7 +135,9 @@ export const Home = () => {
 
   return (
     <main className={classes.root}>
-      <section className={clsx(classes.home)}>
+      <section
+        className={clsx(classes.gridSection, classes.home)}
+      >
         <h1>Home</h1>
         <Button
           color="secondary"
@@ -166,7 +162,9 @@ export const Home = () => {
         </Button>
       </section>
 
-      <section className={clsx(classes.profile)}>
+      <section
+        className={clsx(classes.gridSection, classes.profile)}
+      >
         <Button
           color="secondary"
           className={clsx(classes.link)}
@@ -176,21 +174,25 @@ export const Home = () => {
         </Button>
       </section>
 
-      <section className={clsx(classes.works)}>
+      <section
+        className={clsx(classes.gridSection, classes.works)}
+      >
         <AnimationSlime className={classes.slime} {...data} />
         <Button
           color="secondary"
-          className={clsx(classes.link, classes.debugRight)}
+          className={clsx(classes.link)}
           onClick={() => goGridArea('Home')}
         >
           {gridLinkLabel.home}
         </Button>
       </section>
 
-      <section className={clsx(classes.contact)}>
+      <section
+        className={clsx(classes.gridSection, classes.contact)}
+      >
         <Button
           color="secondary"
-          className={clsx(classes.link, classes.debugRight)}
+          className={clsx(classes.link)}
           onClick={() => goGridArea('Home')}
         >
           {gridLinkLabel.home}
