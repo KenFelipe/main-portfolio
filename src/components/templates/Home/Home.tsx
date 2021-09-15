@@ -16,13 +16,14 @@ type Coor = {
 }
 
 const coor = {
-  home: { x: 100, y: 500 },
+  home: { x: 100, y: 50 },
   profile: { x: 0, y: 50 },
   works: { x: 200, y: 0 },
   contact: { x: 200, y: 100 },
 } as Coor
 
 const gridLinkLabel = {
+  home: 'Move to Profile',
   profile: 'Move to Profile',
   works: 'Move to Works',
   contact: 'Move to Contact',
@@ -138,53 +139,27 @@ export const Home = () => {
   const classes = useStyles()
   // const theme = useTheme()
 
-  const debugButton = (
-    x: number,
-    y: number,
-    label: string,
-    right = false,
-    c = '',
-  ) => (
-    <Button
-      className={clsx(c, classes.link, {
-        [classes.debugRight]: right,
-      })}
-      color="secondary"
-      /** move to given grid area */
-      onClick={() =>
-        document
-          .getElementsByClassName(classes.root)[0]
-          .setAttribute(
-            'style',
-            `transform: translate(-${x}vw, -${y}vh);`,
-          )
-      }
-    >
-      Move to {label}
-    </Button>
-  )
-
   return (
     <main className={classes.root}>
       <section className={clsx(classes.home)}>
         <h1>Home</h1>
         <Button
-          className={clsx(classes.link, classes.profileLink)}
           color="secondary"
+          className={clsx(classes.link, classes.profileLink)}
           onClick={() => goGridArea('Profile')}
         >
           {gridLinkLabel.profile}
         </Button>
         <Button
-          className={clsx(classes.link, classes.worksLink)}
           color="secondary"
+          className={clsx(classes.link, classes.worksLink)}
           onClick={() => goGridArea('Works')}
         >
           {gridLinkLabel.works}
         </Button>
         <Button
-          className={clsx(classes.link, classes.contactLink)}
           color="secondary"
+          className={clsx(classes.link, classes.contactLink)}
           onClick={() => goGridArea('Contact')}
         >
           {gridLinkLabel.contact}
@@ -192,16 +167,34 @@ export const Home = () => {
       </section>
 
       <section className={clsx(classes.profile)}>
-        {debugButton(100, 50, 'Home')}
+        <Button
+          color="secondary"
+          className={clsx(classes.link)}
+          onClick={() => goGridArea('Home')}
+        >
+          {gridLinkLabel.home}
+        </Button>
       </section>
 
       <section className={clsx(classes.works)}>
         <AnimationSlime className={classes.slime} {...data} />
-        {debugButton(100, 50, 'Home', true)}
+        <Button
+          color="secondary"
+          className={clsx(classes.link, classes.debugRight)}
+          onClick={() => goGridArea('Home')}
+        >
+          {gridLinkLabel.home}
+        </Button>
       </section>
 
       <section className={clsx(classes.contact)}>
-        {debugButton(100, 50, 'Home', true)}
+        <Button
+          color="secondary"
+          className={clsx(classes.link, classes.debugRight)}
+          onClick={() => goGridArea('Home')}
+        >
+          {gridLinkLabel.home}
+        </Button>
       </section>
     </main>
   )
