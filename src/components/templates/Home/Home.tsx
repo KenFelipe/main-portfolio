@@ -23,7 +23,7 @@ const coor = {
 } as Coor
 
 const gridLinkLabel = {
-  home: 'Move to Profile',
+  home: 'Move to Home',
   profile: 'Move to Profile',
   works: 'Move to Works',
   contact: 'Move to Contact',
