@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import { AnimationSlime } from '@/atoms/AnimationSlime/AnimationSlime'
+import { blob } from '@/utils/blobData'
 
 // export type HomeProps = {
 // }
@@ -27,15 +28,6 @@ const gridLinkLabel = {
   profile: 'Move to Profile',
   works: 'Move to Works',
   contact: 'Move to Contact',
-}
-
-const data = {
-  viewBox: '0 0 634.33 703.22',
-  d: [
-    'M105.74,79.59c131.91-116.91,374.05-91.53,415-6c40.28,84.12-131.75,189.49-93,321 c35.66,121.03,210.49,130.64,206,187c-5.8,72.81-308.74,198.14-495,57C-28.55,511.83-44.96,213.15,105.74,79.59z',
-    'M105.68,79.58c114.47-95,319.89-86.34,376-2c49.62,74.59-49.09,160.89-5,309 c36.65,123.11,129.58,146.57,116,202c-21.61,88.24-291.23,168.26-454,50C-29.72,516.24-48.34,207.4,105.68,79.58z',
-  ],
-  fill: '#991183',
 }
 
 const goGridArea = (area: string) => {
@@ -91,10 +83,26 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
     },
     slime: {
+      position: 'absolute',
+    },
+    profileSlime: {
       '&&': {
-        width: '150%',
+        width: '157%',
+        height: '135%',
+      },
+    },
+    worksSlime: {
+      '&&': {
+        width: '157%',
+        height: '135%',
+        zIndex: 10,
+      },
+    },
+    contactSlime: {
+      '&&': {
+        width: '160%',
         height: '150%',
-        position: 'absolute',
+        transform: 'scaleX(-1)',
       },
     },
     link: {
@@ -165,6 +173,10 @@ export const Home = () => {
       <section
         className={clsx(classes.gridSection, classes.profile)}
       >
+        <AnimationSlime
+          className={clsx(classes.slime, classes.profileSlime)}
+          {...blob.profile}
+        />
         <Button
           color="secondary"
           className={clsx(classes.link)}
@@ -177,7 +189,10 @@ export const Home = () => {
       <section
         className={clsx(classes.gridSection, classes.works)}
       >
-        <AnimationSlime className={classes.slime} {...data} />
+        <AnimationSlime
+          className={clsx(classes.slime, classes.worksSlime)}
+          {...blob.works}
+        />
         <Button
           color="secondary"
           className={clsx(classes.link)}
@@ -190,6 +205,10 @@ export const Home = () => {
       <section
         className={clsx(classes.gridSection, classes.contact)}
       >
+        <AnimationSlime
+          className={clsx(classes.slime, classes.contactSlime)}
+          {...blob.contact}
+        />
         <Button
           color="secondary"
           className={clsx(classes.link)}
