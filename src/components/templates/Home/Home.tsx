@@ -83,36 +83,6 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'center',
       alignItems: 'center',
     },
-    slime: {
-      position: 'absolute',
-      transition: 'all 700ms ease',
-    },
-    profileSlime: {
-      width: '150%',
-      height: '175%',
-      '&.highlight': {
-        fill: blob.profile.highlight,
-        transform: 'translate(5%, 0)',
-      },
-    },
-    worksSlime: {
-      width: '165%',
-      height: '135%',
-      zIndex: 10,
-      '&.highlight': {
-        fill: blob.works.highlight,
-        transform: 'translate(-5%, 0)',
-      },
-    },
-    contactSlime: {
-      width: '160%',
-      height: '160%',
-      transform: 'scaleX(-1)',
-      '&.highlight': {
-        fill: blob.contact.highlight,
-        transform: 'scaleX(-1) translate(5%, 0)',
-      },
-    },
     link: {
       position: 'absolute',
       zIndex: 100,
@@ -141,6 +111,19 @@ const useStyles = makeStyles((theme: Theme) =>
       right: 0,
       transformOrigin: 'bottom center',
       transform: 'translate(50%, -150%) rotate(-90deg)',
+    },
+    slime: {
+      position: 'absolute',
+      transition: 'all 700ms ease',
+    },
+    profileSlime: {
+      ...blob.profile.style,
+    },
+    worksSlime: {
+      ...blob.works.style,
+    },
+    contactSlime: {
+      ...blob.contact.style,
     },
   }),
 )
@@ -206,7 +189,7 @@ export const Home = () => {
           className={clsx(classes.slime, classes.profileSlime, {
             highlight: highlight.profile,
           })}
-          {...blob.profile}
+          {...blob.profile.svg}
         />
         <Button
           color="secondary"
@@ -224,7 +207,7 @@ export const Home = () => {
           className={clsx(classes.slime, classes.worksSlime, {
             highlight: highlight.works,
           })}
-          {...blob.works}
+          {...blob.works.svg}
         />
         <Button
           color="secondary"
@@ -242,7 +225,7 @@ export const Home = () => {
           className={clsx(classes.slime, classes.contactSlime, {
             highlight: highlight.contact,
           })}
-          {...blob.contact}
+          {...blob.contact.svg}
         />
         <Button
           color="secondary"
