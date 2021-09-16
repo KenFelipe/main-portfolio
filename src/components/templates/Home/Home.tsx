@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import clsx from 'clsx'
 import {
   useTheme,
@@ -84,20 +85,33 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     slime: {
       position: 'absolute',
+      transition: 'all 700ms ease',
     },
     profileSlime: {
       width: '150%',
       height: '175%',
+      '&.highlight': {
+        fill: blob.profile.highlight,
+        transform: 'translate(5%, 0)',
+      },
     },
     worksSlime: {
       width: '165%',
       height: '135%',
       zIndex: 10,
+      '&.highlight': {
+        fill: blob.works.highlight,
+        transform: 'translate(-5%, 0)',
+      },
     },
     contactSlime: {
       width: '160%',
       height: '160%',
       transform: 'scaleX(-1)',
+      '&.highlight': {
+        fill: blob.contact.highlight,
+        transform: 'scaleX(-1) translate(5%, 0)',
+      },
     },
     link: {
       position: 'absolute',
@@ -135,6 +149,24 @@ export const Home = () => {
   const classes = useStyles()
   // const theme = useTheme()
 
+  const [highlight, setHighlight] = useState({
+    profile: false,
+    works: false,
+    contact: false,
+  })
+
+  const handleHover = (_slime: string) => {
+    const slime = _slime.toLowerCase()
+    return {
+      onMouseEnter: () => {
+        setHighlight((prev) => ({ ...prev, [slime]: true }))
+      },
+      onMouseLeave: () => {
+        setHighlight((prev) => ({ ...prev, [slime]: false }))
+      },
+    }
+  }
+
   return (
     <main className={classes.root}>
       <section
@@ -145,6 +177,7 @@ export const Home = () => {
           color="secondary"
           className={clsx(classes.link, classes.profileLink)}
           onClick={() => goGridArea('Profile')}
+          {...handleHover('Profile')}
         >
           {gridLinkLabel.profile}
         </Button>
@@ -152,6 +185,7 @@ export const Home = () => {
           color="secondary"
           className={clsx(classes.link, classes.worksLink)}
           onClick={() => goGridArea('Works')}
+          {...handleHover('Works')}
         >
           {gridLinkLabel.works}
         </Button>
@@ -159,6 +193,7 @@ export const Home = () => {
           color="secondary"
           className={clsx(classes.link, classes.contactLink)}
           onClick={() => goGridArea('Contact')}
+          {...handleHover('Contact')}
         >
           {gridLinkLabel.contact}
         </Button>
@@ -168,7 +203,9 @@ export const Home = () => {
         className={clsx(classes.gridSection, classes.profile)}
       >
         <AnimationSlime
-          className={clsx(classes.slime, classes.profileSlime)}
+          className={clsx(classes.slime, classes.profileSlime, {
+            highlight: highlight.profile,
+          })}
           {...blob.profile}
         />
         <Button
@@ -184,7 +221,9 @@ export const Home = () => {
         className={clsx(classes.gridSection, classes.works)}
       >
         <AnimationSlime
-          className={clsx(classes.slime, classes.worksSlime)}
+          className={clsx(classes.slime, classes.worksSlime, {
+            highlight: highlight.works,
+          })}
           {...blob.works}
         />
         <Button
@@ -200,7 +239,9 @@ export const Home = () => {
         className={clsx(classes.gridSection, classes.contact)}
       >
         <AnimationSlime
-          className={clsx(classes.slime, classes.contactSlime)}
+          className={clsx(classes.slime, classes.contactSlime, {
+            highlight: highlight.contact,
+          })}
           {...blob.contact}
         />
         <Button
