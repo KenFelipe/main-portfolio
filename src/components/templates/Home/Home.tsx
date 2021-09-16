@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { isMobile, MobileView } from 'react-device-detect'
 import clsx from 'clsx'
 import {
   useTheme,
@@ -7,8 +8,12 @@ import {
   Theme,
 } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 import { AnimationSlime } from '@/atoms/AnimationSlime/AnimationSlime'
+import { WorkPanel } from '@/organisms/WorkPanel/WorkPanel'
 import { blob, highlightClass } from '@/utils/blobData'
+import { worksMock } from './Home.mock'
 
 // export type HomeProps = {
 // }
@@ -45,6 +50,12 @@ const goGridArea = (area: string) => {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    // prettier-ignore
+    '@global': !isMobile ? {
+      '*::-webkit-scrollbar': {
+        display: 'none'
+      },
+    } : {},
     root: {
       width: '300vw',
       height: '200vh',
@@ -126,8 +137,31 @@ const useStyles = makeStyles((theme: Theme) =>
     contactSlime: {
       ...blob.contact.style,
     },
+    content: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      right: 0,
+      zIndex: 20,
+      overflowY: 'scroll',
+    },
   }),
 )
+
+// eslint-disable-next-line react/display-name
+const WorksPanels = React.memo(() => {
+  const n = 14
+  return (
+    <Grid container justifyContent="flex-start" spacing={3}>
+      {[...Array(n)].map((_, i) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+          <WorkPanel {...worksMock[i]} />
+        </Grid>
+      ))}
+    </Grid>
+  )
+})
 
 export const Home = () => {
   const classes = useStyles()
@@ -192,6 +226,13 @@ export const Home = () => {
           })}
           {...blob.profile.svg}
         />
+
+        <div className={classes.content}>
+          <Container>
+            <WorksPanels />
+          </Container>
+        </div>
+
         <Button
           color="secondary"
           className={clsx(classes.link)}
@@ -210,6 +251,7 @@ export const Home = () => {
           })}
           {...blob.works.svg}
         />
+
         <Button
           color="secondary"
           className={clsx(classes.link)}
