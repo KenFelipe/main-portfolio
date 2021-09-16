@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme: Theme) =>
       // transform: 'translate(-200vw, -100vh)', // Contact
       transition: 'transform 1s ease',
       willChange: 'transform',
+      backgroundColor: '#E8E7E3',
     },
     home: {
       gridArea: 'home',
