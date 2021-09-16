@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import { AnimationSlime } from '@/atoms/AnimationSlime/AnimationSlime'
-import { blob } from '@/utils/blobData'
+import { blob, highlightClass } from '@/utils/blobData'
 
 // export type HomeProps = {
 // }
@@ -188,7 +188,7 @@ export const Home = () => {
       >
         <AnimationSlime
           className={clsx(classes.slime, classes.profileSlime, {
-            highlight: highlight.profile,
+            [highlightClass]: highlight.profile,
           })}
           {...blob.profile.svg}
         />
@@ -206,7 +206,7 @@ export const Home = () => {
       >
         <AnimationSlime
           className={clsx(classes.slime, classes.worksSlime, {
-            highlight: highlight.works,
+            [highlightClass]: highlight.works,
           })}
           {...blob.works.svg}
         />
@@ -224,7 +224,7 @@ export const Home = () => {
       >
         <AnimationSlime
           className={clsx(classes.slime, classes.contactSlime, {
-            highlight: highlight.contact,
+            [highlightClass]: highlight.contact,
           })}
           {...blob.contact.svg}
         />

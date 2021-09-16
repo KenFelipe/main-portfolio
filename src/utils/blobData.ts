@@ -1,3 +1,5 @@
+export const highlightClass = 'highlight'
+
 export const blob = {
   profile: {
     svg: {
@@ -12,7 +14,7 @@ export const blob = {
     style: {
       width: '150%',
       height: '175%',
-      '&.highlight': {
+      [`&.${highlightClass}`]: {
         fill: '#f56341',
         transform: 'translate(5%, 0)',
       },
@@ -33,7 +35,7 @@ export const blob = {
       width: '165%',
       height: '135%',
       zIndex: 10,
-      '&.highlight': {
+      [`&.${highlightClass}`]: {
         fill: '#00d9d3',
         transform: 'translate(-5%, 0)',
       },
@@ -54,7 +56,7 @@ export const blob = {
       width: '160%',
       height: '160%',
       transform: 'scaleX(-1)',
-      '&.highlight': {
+      [`&.${highlightClass}`]: {
         fill: '#675cfd',
         transform: 'scaleX(-1) translate(5%, 0)',
       },
