@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { isMobile, MobileView } from 'react-device-detect'
 import clsx from 'clsx'
 import {
@@ -13,7 +13,10 @@ import Grid from '@material-ui/core/Grid'
 import { AnimationSlime } from '@/atoms/AnimationSlime/AnimationSlime'
 import { WorkPanel } from '@/organisms/WorkPanel/WorkPanel'
 import { blob, highlightClass } from '@/utils/blobData'
+import { WORKS_QY } from '@/api/worksQy'
 import { worksMock } from './Home.mock'
+
+import { useQuery } from '@apollo/client'
 
 // export type HomeProps = {
 // }
@@ -164,6 +167,10 @@ const WorksPanels = React.memo(() => {
 })
 
 export const Home = () => {
+  // Query Test
+  const { loading, error, data } = useQuery(WORKS_QY)
+  console.log(loading ? 'loading...' : error ? 'Error :(' : data)
+
   const classes = useStyles()
   // const theme = useTheme()
 
