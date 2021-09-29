@@ -1,8 +1,14 @@
 import Head from 'next/head'
+import { GetStaticProps } from 'next'
 import { Home } from '@/templates/Home/Home'
-// import Button from '@material-ui/core/Button'
+import { WorkPanelProps } from '@/organisms/WorkPanel/WorkPanel'
+import { fetchWorks } from '@/api/fetchWorks'
 
-const HomePage = () => {
+export type IndexProps = {
+  works: WorkPanelProps[]
+}
+
+const Index = ({ works }: IndexProps) => {
   return (
     <>
       <Head>
@@ -10,15 +16,20 @@ const HomePage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Home />
-      {/* <main>
-        <h1>Next.js</h1>
-        <Button variant="contained" color="primary">
-          Primary
-        </Button>
-      </main> */}
+      <Home works={works} />
     </>
   )
 }
 
-export default HomePage
+export const getStaticProps: GetStaticProps = async () => {
+  const works = await fetchWorks()
+
+  return {
+    // will be passed to the page component as props
+    props: {
+      works,
+    },
+  }
+}
+
+export default Index

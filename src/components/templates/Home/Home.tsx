@@ -10,16 +10,18 @@ import {
 import Button from '@material-ui/core/Button'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
+
 import { AnimationSlime } from '@/atoms/AnimationSlime/AnimationSlime'
-import { WorkPanel } from '@/organisms/WorkPanel/WorkPanel'
+import {
+  WorkPanel,
+  WorkPanelProps,
+} from '@/organisms/WorkPanel/WorkPanel'
 import { blob, highlightClass } from '@/utils/blobData'
-import { WORKS_QY } from '@/api/worksQy'
-import { worksMock } from './Home.mock'
+// import { worksMock } from './Home.mock'
 
-import { useQuery } from '@apollo/client'
-
-// export type HomeProps = {
-// }
+export type HomeProps = {
+  works: WorkPanelProps[]
+}
 
 type Coor = {
   [key: string]: { x: number; y: number }
@@ -153,24 +155,34 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 // eslint-disable-next-line react/display-name
-const WorksPanels = React.memo(() => {
-  const n = 14
-  return (
-    <Grid container justifyContent="flex-start" spacing={3}>
-      {[...Array(n)].map((_, i) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
-          <WorkPanel {...worksMock[i]} />
-        </Grid>
-      ))}
-    </Grid>
-  )
-})
+const WorksPanels = React.memo(
+  ({ works }: { works: WorkPanelProps[] }) => {
+    return (
+      <Grid container justifyContent="flex-start" spacing={3}>
+        {/* Debug */}
+        {/* {[...Array(14)].map((_, i) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+            <WorkPanel {...worksMock[i]} />
+          </Grid>
+        ))} */}
 
-export const Home = () => {
-  // Query Test
-  const { loading, error, data } = useQuery(WORKS_QY)
-  console.log(loading ? 'loading...' : error ? 'Error :(' : data)
+        {works.map((work, i) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+            <WorkPanel
+              image={work.image}
+              description={work.description}
+              github={work.github}
+              details={work.details}
+              webpage={work.webpage}
+            />
+          </Grid>
+        ))}
+      </Grid>
+    )
+  },
+)
 
+export const Home = ({ works }: HomeProps) => {
   const classes = useStyles()
   // const theme = useTheme()
 
@@ -236,7 +248,7 @@ export const Home = () => {
 
         <div className={classes.content}>
           <Container>
-            <WorksPanels />
+            <WorksPanels works={works} />
           </Container>
         </div>
 
